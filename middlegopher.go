@@ -4,6 +4,8 @@ package middlegopher
 // The two arguments are 1: input chan (read), 2: output chan (write).
 // Do whatever work is necessary with the data on the input chan and
 // write it to the output chan or just drop it.
+// IMPORTANT: dont forget to close the output channel, otherwise the whole
+// pipeline will deadlock!
 type Middleware[T any] func(chan T, chan T)
 
 // MiddleGopher
