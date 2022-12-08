@@ -9,12 +9,14 @@ import (
 func main() {
 	var input = make(chan int)
 	var one = func(input chan int, output chan int) {
+		defer close(output)
 		for num := range input {
 			fmt.Printf("one %d \n", num)
 			output <- num
 		}
 	}
 	var two = func(input chan int, output chan int) {
+		defer close(output)
 		for num := range input {
 			fmt.Printf("two %d \n", num)
 			output <- num
